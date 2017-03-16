@@ -1,0 +1,16 @@
+{% extends 'ER2XML/base.html' %}
+
+{% block content %}
+    {% for key, value in forms.items %}
+    	<article>
+	    	<h1> {{ key }} </h1>
+	    	<form action='{% url "schema_create" %}' method="POST" class="post-form">{% csrf_token %}
+	            {% for form in value %}
+	            	{{ form.as_p }}
+	            	<div class="line"></div>
+	            {% endfor %}
+        	</form>
+        </article>
+    {% endfor %}
+    <button action='{% url "schema_create" %}' method="POST" type="submit" class="save btn btn-default">Save</button>
+{% endblock %}
