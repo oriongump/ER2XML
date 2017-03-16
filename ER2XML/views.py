@@ -89,14 +89,13 @@ def model_remove(request, pk):
     return redirect('model_list')
 
 def schema_save(request, pk):
-    model = get_object_or_404(ERModel, pk=pk)
-    schema = model.schema
-    if request.method == "POST":
-        form = SchemaForm(request.POST, instance=schema)
-        if form.is_valid():
-            schema = form.save(commit=False)
-            schema.save()
-            return redirect('schema_detail', pk=schema.pk)
-    else:
-        form = SchemaForm(instance=schema)
-    return render(request, 'ER2XML/schema_save.html', {'form': form})
+    schema= get_object_or_404(XMLSchema, pk=pk)
+    # if request.method == "POST":
+    #     form = SchemaForm(request.POST, instance=schema)
+    #     if form.is_valid():
+    #         schema = form.save(commit=False)
+    #         schema.save()
+    return redirect('schema_detail', pk=schema.pk)
+    # else:
+    #     form = SchemaForm(instance=schema)
+    # return render(request, 'ER2XML/schema_save.html', {'form': form})
